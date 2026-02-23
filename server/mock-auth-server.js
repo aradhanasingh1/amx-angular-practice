@@ -79,6 +79,14 @@ app.post('/api/auth/refresh', (req, res) => {
   return res.json({ token, refreshToken: newRefreshToken, user: { id: user.id, email: user.email, name: user.name } });
 });
 
+// Forgot password endpoint (mock)
+app.post('/api/auth/forgot', (req, res) => {
+  const { email } = req.body || {};
+  if (!email) return res.status(400).json({ message: 'Email required' });
+  // In a real app, we'd send an email. Here we just respond with success.
+  return res.json({ message: 'If the email exists, reset instructions were sent.' });
+});
+
 app.listen(port, () => {
   console.log(`Mock auth server running on http://localhost:${port}`);
 });

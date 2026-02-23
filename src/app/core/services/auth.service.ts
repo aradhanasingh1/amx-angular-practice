@@ -130,6 +130,13 @@ export class AuthService {
   }
 
   /**
+   * Forgot password - request password reset
+   */
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/forgot`, { email });
+  }
+
+  /**
    * Get current user
    */
   getCurrentUser(): any {
