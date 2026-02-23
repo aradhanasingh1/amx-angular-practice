@@ -1,0 +1,76 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Login</h1>
+    <p class="subtitle">Welcome back! Please login to your account</p>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="Enter your email"
+          [class.is-invalid]="submitted && f['email']?.errors"
+        />
+        <div *ngIf="submitted && f['email']?.errors" class="error-text">
+          <span *ngIf="f['email']?.errors?.['required']">Email is required</span>
+          <span *ngIf="f['email']?.errors?.['email']">Please enter a valid email</span>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Enter your password"
+          [class.is-invalid]="submitted && f['password']?.errors"
+        />
+        <div *ngIf="submitted && f['password']?.errors" class="error-text">
+          <span *ngIf="f['password']?.errors?.['required']">Password is required</span>
+          <span *ngIf="f['password']?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <!-- Remember Me Checkbox -->
+      <div class="form-check">
+        <input
+          id="rememberMe"
+          type="checkbox"
+          formControlName="rememberMe"
+          class="form-check-input"
+        />
+        <label for="rememberMe" class="form-check-label">
+          Remember me
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loading"
+      >
+        <span *ngIf="!loading">Login</span>
+        <span *ngIf="loading">Logging in...</span>
+      </button>
+    </form>
+
+    <!-- Footer Links -->
+    <div class="login-footer">
+      <p>Don't have an account? <a href="#signup">Sign up here</a></p>
+      <p><a href="#forgot">Forgot your password?</a></p>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,28 @@
-<p>home works!</p>
+<div class="home-container">
+  <div class="navbar">
+    <div class="navbar-content">
+      <h1>Dashboard</h1>
+      <div class="user-info">
+        <span *ngIf="currentUser" class="welcome-text">
+          Welcome, {{ currentUser.name || currentUser.email }}!
+        </span>
+        <button (click)="logout()" class="logout-btn">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <h2>Home Page</h2>
+      <p>You are successfully logged in!</p>
+      <div *ngIf="currentUser" class="user-details">
+        <h3>Your Information:</h3>
+        <ul>
+          <li><strong>Name:</strong> {{ currentUser.name }}</li>
+          <li><strong>Email:</strong> {{ currentUser.email }}</li>
+          <li><strong>ID:</strong> {{ currentUser.id }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
